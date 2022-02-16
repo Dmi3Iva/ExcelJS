@@ -3,7 +3,9 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-require('@babel/polyfill');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
@@ -21,9 +23,10 @@ const jsLoaders = () => {
       },
     },
   ];
-  if (isDev) {
-    loaders.push('eslint-loader');
-  }
+  // TODO:: production has eslint?
+  // if (isDev) {
+  //   loaders.push('eslint-loader');
+  // }
   return loaders;
 };
 
@@ -67,6 +70,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
+    new ESLintPlugin({
+      context: path.resolve(__dirname, 'src'),
+      extensions: ['js', 'css'],
+    }),
   ],
   module: {
     rules: [
@@ -84,5 +91,8 @@ module.exports = {
         use: jsLoaders(),
       },
     ],
+  },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
   },
 };
