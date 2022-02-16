@@ -70,7 +70,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
-    new MiniCssExtractPlugin(),
     new ESLintPlugin({
       context: path.resolve(__dirname, 'src'),
       extensions: ['js', 'css'],
