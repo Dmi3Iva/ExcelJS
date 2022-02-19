@@ -8,8 +8,19 @@
     "browser": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "google"],
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
   "rules": {
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "max-len": [
+      "error",
+      {
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true,
+        "ignoreStrings": true
+      }
+    ]
   }
 }
