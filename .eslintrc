@@ -21,6 +21,10 @@
         "ignoreComments": true,
         "ignoreStrings": true
       }
+    ],
+    "operator-linebreak": [
+      "error",
+      "before"
     ]
   }
 }
