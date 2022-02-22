@@ -95,4 +95,7 @@ module.exports = {
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
   },
+  watchOptions: {
+    poll: 500,
+  },
 };
